@@ -3,26 +3,49 @@ var ctx = canvas.getContext('2d');
 var scoreText = document.getElementById("score");
 
 var player;
-var bul;
+var fbs = [];
 function init(){
   player = new Player(canvas.width/2,canvas.height * 3/4)
-  bul = []
-  bul.push(new Bullet(canvas.width/2,0,0.3,0.5))
-  bul.push(new Bullet(canvas.width/2,0,-0.1,0.4))
-  bul.push(new Bullet(canvas.width/2,0,0.1,0.4))
-  bul.push(new Bullet(canvas.width/2,0,-0.3,0.3))
+  fbs.push(generateFB(Math.PI*1/4))
+  fbs.push(generateFB(Math.PI*2/4))
+  fbs.push(generateFB(Math.PI*3/4))
   setInterval(update,16)
+}
+
+function generateFB(theta){
+  var fb = new FBullet(canvas.width/2,0,0.3,theta);
+  fb.bul.push(new FBChild(0,0))
+  fb.bul.push(new FBChild(5,0))
+  fb.bul.push(new FBChild(10,0))
+  fb.bul.push(new FBChild(15,0))
+  fb.bul.push(new FBChild(5*Math.sqrt(2),Math.PI*3/4))
+  fb.bul.push(new FBChild(5,Math.PI*1/2))
+  fb.bul.push(new FBChild(5*Math.sqrt(2),Math.PI*1/4))
+  fb.bul.push(new FBChild(5*Math.sqrt(5),Math.atan2(1,2)))
+  fb.bul.push(new FBChild(10*Math.sqrt(2),Math.PI*3/4))
+  fb.bul.push(new FBChild(5*Math.sqrt(5),Math.atan2(2,-1)))
+  fb.bul.push(new FBChild(10,Math.PI*1/2))
+  fb.bul.push(new FBChild(5*Math.sqrt(5),Math.atan2(2,1)))
+  fb.bul.push(new FBChild(5*Math.sqrt(2),Math.PI*5/4))
+  fb.bul.push(new FBChild(5,Math.PI*3/2))
+  fb.bul.push(new FBChild(5*Math.sqrt(2),Math.PI*7/4))
+  fb.bul.push(new FBChild(5*Math.sqrt(5),Math.atan2(-1,2)))
+  fb.bul.push(new FBChild(10*Math.sqrt(2),Math.PI*5/4))
+  fb.bul.push(new FBChild(5*Math.sqrt(5),Math.atan2(-2,-1)))
+  fb.bul.push(new FBChild(10,Math.PI*3/2))
+  fb.bul.push(new FBChild(5*Math.sqrt(5),Math.atan2(-2,1)))
+  return fb;
 }
 
 function update(){
   if(!player) return;
   player.update()
-  bul.forEach((v)=>{
+  fbs.forEach((v)=>{
     v.update()
   })
   ctx.clearRect(0,0,canvas.width,canvas.height)
   player.draw(ctx)
-  bul.forEach((v)=>{
+  fbs.forEach((v)=>{
     v.draw(ctx)
   })
 }
