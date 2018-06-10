@@ -3,16 +3,28 @@ var ctx = canvas.getContext('2d');
 var scoreText = document.getElementById("score");
 
 var player;
+var bul;
 function init(){
   player = new Player(canvas.width/2,canvas.height * 3/4)
+  bul = []
+  bul.push(new Bullet(canvas.width/2,0,0.3,0.5))
+  bul.push(new Bullet(canvas.width/2,0,-0.1,0.4))
+  bul.push(new Bullet(canvas.width/2,0,0.1,0.4))
+  bul.push(new Bullet(canvas.width/2,0,-0.3,0.3))
   setInterval(update,16)
 }
 
 function update(){
   if(!player) return;
   player.update()
+  bul.forEach((v)=>{
+    v.update()
+  })
   ctx.clearRect(0,0,canvas.width,canvas.height)
   player.draw(ctx)
+  bul.forEach((v)=>{
+    v.draw(ctx)
+  })
 }
 
 function onkeydown(e){

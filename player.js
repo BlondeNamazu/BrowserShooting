@@ -35,8 +35,10 @@ class Player {
     // adjust to abs velocity is 1
     var mag = Math.abs(this.vx)+Math.abs(this.vy)
     if(mag == 0) mag = 1;
-    this.x += this.vx/mag;
-    this.y += this.vy/mag;
+
+    var speed = 5
+    this.x += this.vx*speed/mag;
+    this.y += this.vy*speed/mag;
   }
   draw(ctx){
     ctx.fillStyle = "red"
