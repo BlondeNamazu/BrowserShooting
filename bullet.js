@@ -41,9 +41,9 @@ class FBullet {
     this.bul.forEach((v)=>{
       v.draw(ctx,this.x,this.y,this.theta);
     })
-    this.fbul.forEach(v)=>{
+    this.fbul.forEach((v)=>{
       v.draw(ctx)
-    }
+    })
   }
 }
 
