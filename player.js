@@ -10,33 +10,40 @@ class Player {
     this.y = y;
     this.vx = 0;
     this.vy = 0;
+    this.UP = false;
+    this.DOWN = false;
+    this.LEFT = false;
+    this.RIGHT = false;
+    this.SHIFFT = false;
   }
   setVel(key,isPressed){
-    var vx = this.vx
-    var vy = this.vy
     switch(key){
       case Key.UP :
-        vy = isPressed ? -1 : 0
+        this.UP = isPressed;
         break;
       case Key.DOWN :
-        vy = isPressed ? 1 : 0
+        this.DOWN = isPressed;
         break;
       case Key.LEFT :
-        vx = isPressed ? -1 : 0
+        this.LEFT = isPressed;
         break;
       case Key.RIGHT :
-        vx = isPressed ? 1 : 0
+        this.RIGHT = isPressed;
+        break;
+      case Key.SHIFT :
+        this.SHIFT = isPressed;
         break;
     }
-    this.vx = vx;
-    this.vy = vy;
+    this.vx = (this.RIGHT?1:0) - (this.LEFT?1:0);
+    this.vy = (this.DOWN?1:0) - (this.UP?1:0);
   }
   update(){
     // adjust to abs velocity is 1
     var mag = Math.abs(this.vx)+Math.abs(this.vy)
     if(mag == 0) mag = 1;
 
-    var speed = 5
+    let speed = this.SHIFT?2:5;
+
     this.x += this.vx*speed/mag;
     this.y += this.vy*speed/mag;
   }

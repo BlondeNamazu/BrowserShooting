@@ -35,7 +35,6 @@ class FBullet {
   update(){
     this.x += this.v * Math.cos(this.theta);
     this.y += this.v * Math.sin(this.theta);
-    console.log(this.x,this.y)
   }
   draw(ctx){
     this.bul.forEach((v)=>{

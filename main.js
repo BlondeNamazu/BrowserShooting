@@ -65,6 +65,9 @@ function onkeydown(e){
     case 40:
       player.setVel(Key.DOWN,true)
       break;
+    case 16:
+      player.setVel(Key.SHIFT,true)
+      break;
   }
 }
 function onkeyup(e){
@@ -81,6 +84,9 @@ function onkeyup(e){
       break;
     case 40:
       player.setVel(Key.DOWN,false)
+      break;
+    case 16:
+      player.setVel(Key.SHIFT,false)
       break;
   }
 }
