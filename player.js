@@ -14,7 +14,7 @@ class Player {
     this.DOWN = false;
     this.LEFT = false;
     this.RIGHT = false;
-    this.SHIFFT = false;
+    this.SHIFT = false;
   }
   setVel(key,isPressed){
     switch(key){
