@@ -30,6 +30,7 @@ class FBullet {
     this.y = y;
     this.v = v;
     this.bul = [];
+    this.fbul = [];
     this.theta = theta;
   }
   update(){
@@ -40,6 +41,9 @@ class FBullet {
     this.bul.forEach((v)=>{
       v.draw(ctx,this.x,this.y,this.theta);
     })
+    this.fbul.forEach(v)=>{
+      v.draw(ctx)
+    }
   }
 }
 
